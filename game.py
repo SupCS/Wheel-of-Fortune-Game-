@@ -29,13 +29,13 @@ class WOFPlayer:
 class WOFHumanPlayer(WOFPlayer):
 
     def getMove(self, category, obscuredPhrase, guessed):
-        usrinp = input(
-            "{%s} has ${}\n"
-            "Category: {}\n"
-            "Phrase:  {}\n"
-            "Guessed: {}\n"
-            "Guess a letter, phrase, or type 'exit' or 'pass':\n").format(
-            self.name, self.prizeMoney, category, obscuredPhrase, guessed)
+        usrinp = input('''
+            {} has ${}\n
+            Category: {}\n
+            Phrase:  {}\n
+            Guessed: {}\n
+            Guess a letter, phrase, or type 'exit' or 'pass':\n")'''.format(
+            self.name, self.prizeMoney, category, obscuredPhrase, guessed))
         return usrinp
 
 
@@ -111,7 +111,7 @@ def getNumberBetween(prompt, min, max):
 #    { "type": "bankrupt", "text": "Bankrupt", "prize": false },
 #    { "type": "loseturn", "text": "Lose a turn", "prize": false }
 def spinWheel():
-    with open("wheel.json", 'r') as f:
+    with open("wheelprizes.json", 'r') as f:
         wheel = json.loads(f.read())
         return random.choice(wheel)
 
@@ -157,16 +157,16 @@ print('WHEEL OF PYTHON')
 print('=' * 15)
 print('')
 
-num_human = getNumberBetween('How many human players?', 0, 10)
+num_human = getNumberBetween('How many human players?\n', 0, 10)
 
 # Create the human player instances
-human_players = [WOFHumanPlayer(input('Enter the name for human player #{}'.format(i + 1))) for i in range(num_human)]
+human_players = [WOFHumanPlayer(input('Enter the name for human player #{}\n'.format(i + 1))) for i in range(num_human)]
 
-num_computer = getNumberBetween('How many computer players?', 0, 10)
+num_computer = getNumberBetween('How many computer players?\n', 0, 10)
 
 # If there are computer players, ask how difficult they should be
 if num_computer >= 1:
-    difficulty = getNumberBetween('What difficulty for the computers? (1-10)', 1, 10)
+    difficulty = getNumberBetween('What difficulty for the computers? (1-10)\n', 1, 10)
 
 # Create the computer player instances
 computer_players = [WOFComputerPlayer('Computer {}'.format(i + 1), difficulty) for i in range(num_computer)]
