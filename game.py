@@ -34,7 +34,7 @@ class WOFHumanPlayer(WOFPlayer):
             Category: {}\n
             Phrase:  {}\n
             Guessed: {}\n
-            Guess a letter, phrase, or type 'exit' or 'pass':\n")'''.format(
+            Guess a letter, phrase, or type 'exit' or 'pass':\n'''.format(
             self.name, self.prizeMoney, category, obscuredPhrase, guessed))
         return usrinp
 
